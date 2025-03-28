@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  labels:
+    app: webapp
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: webapp
+        version: v1
+    spec:
+      containers:
+        - name: webapp
+          image: minikube-test-app:v1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: app-config
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5 

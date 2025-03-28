@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-green
+  labels:
+    app: webapp
+    version: green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+      version: green
+  template:
+    metadata:
+      labels:
+        app: webapp
+        version: green
+    spec:
+      containers:
+        - name: webapp
+          image: minikube-test-app:v1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_HOST
+              value: "postgres"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "postgres"
+            - name: DB_NAME
+              value: "postgres"
+            - name: APP_VERSION
+              value: "1.0.0-green"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5 
