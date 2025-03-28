@@ -20,7 +20,9 @@ minikube-cluster/
 ├── docs/                 # Документация
 │   ├── installation.md   # Инструкции по установке
 │   ├── deployment.md     # Инструкции по деплою
-│   └── blue-green.md     # Руководство по Blue-Green Deployment
+│   ├── blue-green.md     # Руководство по Blue-Green Deployment
+│   ├── architecture.md   # Описание архитектуры проекта
+│   └── troubleshooting.md # Руководство по устранению неполадок
 ├── k8s/                  # Конфигурации Kubernetes
 │   ├── postgres/         # Конфигурации для PostgreSQL
 │   ├── webapp/           # Конфигурации для стандартного деплоя
@@ -72,6 +74,8 @@ minikube-cluster/
 - [Инструкции по установке](docs/installation.md)
 - [Инструкции по деплою](docs/deployment.md)
 - [Руководство по Blue-Green Deployment](docs/blue-green.md)
+- [Архитектура проекта](docs/architecture.md)
+- [Устранение неполадок](docs/troubleshooting.md)
 
 ## Требования
 
@@ -81,4 +85,4 @@ minikube-cluster/
 
 ## Лицензия
 
-MIT 
+[MIT](LICENSE) 
